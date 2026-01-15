@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { MdHome, MdLogout} from 'react-icons/md';
+import { MdHome, MdLogout, MdMiscellaneousServices} from 'react-icons/md';
 import { NavLink } from 'react-router-dom'
 import { userAuth } from '../pages/context/AuthContext';
 import { LuChartNoAxesCombined, LuUsers } from 'react-icons/lu';
@@ -10,7 +10,7 @@ import { BiHome } from 'react-icons/bi';
 import { PiNewspaperClippingLight } from 'react-icons/pi';
 import ButtonPreloader from './ButtonPreloader';
 import { toast } from 'react-toastify';
-import { FaProductHunt, FaRegUser } from 'react-icons/fa';
+import { FaBlog, FaProductHunt, FaRegUser } from 'react-icons/fa';
 
 
 interface MenuItem {
@@ -31,9 +31,9 @@ interface MenuItem {
       icon : <BiHome />
     },
     {
-      title: 'product',
-      link: '/admin/admin-shop',
-      icon : <FaProductHunt />
+      title: 'services',
+      link: '/admin/admin-services',
+      icon : <MdMiscellaneousServices />
     },
     {
       title: 'team',
@@ -41,9 +41,9 @@ interface MenuItem {
       icon : <FaRegUser />
     },
     {
-      title: 'consultation',
-      link: '/admin/admin-consult',
-      icon : <LuUsers />
+      title: 'blog',
+      link: '/admin/admin-blog',
+      icon : <FaBlog />
     },
     {
       title: 'about us',

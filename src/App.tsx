@@ -18,6 +18,8 @@ import MessageComponent from "./pages/admin/component/MessageComponent";
 import AboutUs from "./pages/admin/AboutUs";
 import Consulting from "./pages/admin/Consulting";
 import Team from "./pages/admin/Team";
+import Services from "./pages/admin/Services";
+
 
 
 
@@ -63,7 +65,7 @@ const scheduleToggle = () => {
 
          <Route path="home-page" element={<Homepage/>} />
          <Route path="vlog-page" element={<Vlog/>} />
-         <Route path="admin-shop" element={<AdminShop />} />
+         <Route path="admin-services" element={<Services />} />
 
          <Route path="admin-blog" element={< AdminBlog />} />
 

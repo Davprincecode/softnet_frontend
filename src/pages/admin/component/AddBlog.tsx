@@ -255,7 +255,7 @@ const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
         return ( 
 
           <div>
-          <div className="wrap-blog flex justification-between">
+          <div className="wrap-blog flex justification-between gap-20">
 
           <div className="blog-1">
           <div className="admin-input">
@@ -322,35 +322,7 @@ const handleDrop = (e: React.DragEvent<HTMLDivElement>) => {
             </div>
             </div>
 
-          {/* Image & Tags */}
-          <div className="product-form-top flex justification-between">
-          <div className="prod-category">
-          <div className="admin-prod-title">Tags</div>
-          <div className="admin-input">
-          <label>Add Tags</label>
-          <input
-          type="text"
-          placeholder="Enter Tag Name"
-          onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-          handleTagged(e.currentTarget.value);
-          }
-          }}
-          />
-          </div>
-          <div className="addTags flex-center gap-10">
-          {
-          tagged.map((tag, index) => (
-          <div key={index} className="addTag flex-center gap-10">
-            <p>{tag.tagName}</p>
-            <RxCross2 onClick={() => removeTag(index)} />
-          </div>
-          ))
-          }
-          </div>
-          {/* <div className="create-new">Create New</div> */}
-          </div>
-          </div>
+        
           </div>
 
           </div>

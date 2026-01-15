@@ -61,8 +61,6 @@ const AllBlog : React.FC<HeroInterface> = ({  heroFunction, setEditId }) => {
               };
               try {
                   const response = await fetch(`${baseUrl}/get-blog?page=${pageNumber}`, requestOptions); 
-                 
-                  
                   if (!response.ok) {
                   const errorResponse = await response.json();
                   throw new Error(errorResponse.message);
@@ -272,49 +270,49 @@ const AllBlog : React.FC<HeroInterface> = ({  heroFunction, setEditId }) => {
                   }
 
 
-                  const truncateRichHtml = (
-    html: string,
-    maxLength: number = 150
-  ): { html: string; isTruncated: boolean } => {
-    const tempDiv = document.createElement('div');
-    // tempDiv.className = 'flex';
-    tempDiv.innerHTML = html;
+            const truncateRichHtml = (
+            html: string,
+            maxLength: number = 150
+            ): { html: string; isTruncated: boolean } => {
+            const tempDiv = document.createElement('div');
+            // tempDiv.className = 'flex';
+            tempDiv.innerHTML = html;
 
-    const fullText = tempDiv.textContent?.trim() || '';
+            const fullText = tempDiv.textContent?.trim() || '';
 
-    if (fullText.length <= maxLength) {
-      return { html, isTruncated: false }; 
-    }
+            if (fullText.length <= maxLength) {
+            return { html, isTruncated: false }; 
+            }
 
-    let charCount = 0;
+            let charCount = 0;
 
-    const walk = (node: Node): string => {
-      if (charCount >= maxLength) return '';
+            const walk = (node: Node): string => {
+            if (charCount >= maxLength) return '';
 
-      if (node.nodeType === Node.TEXT_NODE) {
-        const text = node.textContent || '';
-        const remaining = maxLength - charCount;
-        const slice = text.slice(0, remaining);
-        charCount += slice.length;
-        return slice;
-      }
+            if (node.nodeType === Node.TEXT_NODE) {
+            const text = node.textContent || '';
+            const remaining = maxLength - charCount;
+            const slice = text.slice(0, remaining);
+            charCount += slice.length;
+            return slice;
+            }
 
-      if (node.nodeType === Node.ELEMENT_NODE) {
-        const el = node as HTMLElement;
-        const tag = el.tagName.toLowerCase();
-        const attrs = Array.from(el.attributes)
-          .map(attr => `${attr.name}="${attr.value}"`)
-          .join(' ');
-        const children = Array.from(el.childNodes).map(walk).join('');
-        return `<${tag}${attrs ? ' ' + attrs : ''}>${children}</${tag}>`;
-      }
-      return '';
-    };
+            if (node.nodeType === Node.ELEMENT_NODE) {
+            const el = node as HTMLElement;
+            const tag = el.tagName.toLowerCase();
+            const attrs = Array.from(el.attributes)
+            .map(attr => `${attr.name}="${attr.value}"`)
+            .join(' ');
+            const children = Array.from(el.childNodes).map(walk).join('');
+            return `<${tag}${attrs ? ' ' + attrs : ''}>${children}</${tag}>`;
+            }
+            return '';
+            };
 
-    const truncatedHtml = walk(tempDiv) + "...";
+            const truncatedHtml = walk(tempDiv) + "...";
 
-    return { html: truncatedHtml, isTruncated: true };
-  };
+            return { html: truncatedHtml, isTruncated: true };
+            };
 
 
   return (
@@ -323,19 +321,19 @@ const AllBlog : React.FC<HeroInterface> = ({  heroFunction, setEditId }) => {
         <div className="admin-header-form  flex-center gap-10 justification-between">
 
             <div className="flex-center gap-10">
-                <div className="header-form-filter">
+                {/* <div className="header-form-filter">
                     <select  onChange={(e) => handleFilter(e.target.value)}>
                         <option value="">Filter</option>
                         <option value="pin">Pinned</option>
                         <option value="unpin">Unpinned</option>
                     </select>
-                </div>
+                </div> */}
                 <div className="header-form-input">
                     <input type="text" placeholder='Search' onChange={(e) => handleSearch(e.target.value)}/>
                     <CiSearch />
                 </div>
             </div>
-                <MdDelete className='delete'/>
+                {/* <MdDelete className='delete'/> */}
         </div>
 
 <div className="admin-shop-container">
@@ -352,7 +350,7 @@ const AllBlog : React.FC<HeroInterface> = ({  heroFunction, setEditId }) => {
                 <th>sn</th>
                 <th>title</th>
                 <th>brief</th>
-                <th>pin post ({courses.filter(course => course.pin).length}/3)</th>
+                {/* <th>pin post ({courses.filter(course => course.pin).length}/3)</th> */}
                 <th>status</th>
                 <th>action</th>
             </tr>
@@ -380,7 +378,7 @@ const AllBlog : React.FC<HeroInterface> = ({  heroFunction, setEditId }) => {
                         </td>
                         <td><div className='flex-wrap gap-2'  dangerouslySetInnerHTML={{ __html: html }} /></td>
 
-                        <td> 
+                        {/* <td> 
                           {
                             item.pin ? (
                               <div className="pin pinned" onClick={() => handlePin(item.id)}>
@@ -395,7 +393,7 @@ const AllBlog : React.FC<HeroInterface> = ({  heroFunction, setEditId }) => {
                             )
                           }
                             
-                         </td>
+                         </td> */}
                         
                         <td>
                             <div className="radio-group">
