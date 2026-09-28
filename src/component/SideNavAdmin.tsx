@@ -11,6 +11,7 @@ import { PiNewspaperClippingLight } from 'react-icons/pi';
 import ButtonPreloader from './ButtonPreloader';
 import { toast } from 'react-toastify';
 import { FaBlog, FaProductHunt, FaRegUser } from 'react-icons/fa';
+import { IoMdContacts } from 'react-icons/io';
 
 
 interface MenuItem {
@@ -49,6 +50,16 @@ interface MenuItem {
       title: 'about us',
       link: '/admin/about-us',
       icon : <PiNewspaperClippingLight />
+    },
+    {
+      title: 'contact us',
+      link: '/admin/contact-us',
+      icon : <IoMdContacts />
+    },
+    {
+      title: 'setting',
+      link: '/admin/change-password',
+      icon : <MdMiscellaneousServices />
     }
     
    
@@ -92,12 +103,6 @@ interface SideNavProps {
               </div> 
               <div className="menu-title">{menuItem.title}</div> 
             </NavLink>
-
-           
-
-
-
-            
         </li>
       ))}
 

@@ -671,6 +671,19 @@
       flex-direction: column;
       /* width: 50%; */
     }
+    .middle{
+      width: 100%;
+    }
+    .middle input{
+      border-radius: 0px !important;
+    }
+    .middle > h1{
+      margin-bottom: 30px;
+    }
+    .middle .btnFlex .btn{
+      border-radius:  10px !important;
+      margin-top: 30px;
+    }
     .form-group{
       margin-bottom: 15px;
     }

@@ -31,6 +31,7 @@ const  AllServices : React.FC<HeroInterface> = ({  heroFunction, setEditId }) =>
     const[loading, setLoading] = useState<boolean>(false);
     const [showPopup, setShowPopup] = useState(false);
     const [selectedId, setSelectedId] = useState<string | null>(null);
+    
     const [data, setData] = useState<dataIntern[]>([]);
 
 

@@ -55,6 +55,7 @@ const AdminDashboard = () => {
    const [product, setProduct] = useState<productIntern[]>([]);
    const [gallery, setGallery] = useState<string>('');
    const [hero, setHero] = useState<string>('');
+   const [team, setTeam] = useState<string>('');
 
   
    const {baseUrl, token} = userAuth();
@@ -63,7 +64,6 @@ const AdminDashboard = () => {
      getData()
     }, []);
 
-  
     const getData = async () => {
         setLoading(true);
         const myHeaders = new Headers();
@@ -83,7 +83,7 @@ const AdminDashboard = () => {
           const result = await response.json(); 
           setGallery(result.data.gallery);
           setHero(result.data.hero);
-          setProduct(result.data.product);
+          setTeam(result.data.team);
           setLoading(false);
         } catch (error) {
         setLoading(false);
@@ -161,37 +161,23 @@ const AdminDashboard = () => {
                    <div className="mainProduct">
 
                      <div className="popularProduct">
-                        <div className="popularTitle">latest products(5)</div>
+                        <div className="popularTitle">Team ({team})</div>
 
                         <div className="popularForm">
-                          <div className="popularHeader flex-center gap-10 justification-between">
+                          {/* <div className="popularHeader flex-center gap-10 justification-between">
                             <p>product</p>
                             <p>price</p>
-                          </div>
+                          </div> */}
 
-                          {
-                            product.map((item, index) => (
-                         <div className="popularItem flex-center gap-10 justification-between" key={index}>
-                            <div className="popularCon flex ">
-                              <div className="popularImage">
-                                <img src={item.productImage} alt="" />
-                              </div>
-                              <div className="popularName">
-                                <p className="pName">{item.productName}</p>
-                              </div>
-                            </div>
-                            <div className="popularPrice">₦{item.productPrice}</div>
-                          </div>
-                            ))
-                          }
+                        
                          
 
 
                         </div>
                         
-                        <div className="flex-product-link">
+                        {/* <div className="flex-product-link">
                           <NavLink to="/admin/admin-shop" className="view">all products</NavLink>
-                        </div>
+                        </div> */}
                         
                      </div>
 

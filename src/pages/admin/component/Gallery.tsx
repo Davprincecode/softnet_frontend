@@ -6,7 +6,6 @@ import { userAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import ButtonPreloader from '../../../component/ButtonPreloader';
 import DeletePopup from './DeletePopUp';
-import TestimonialReview from '../../../component/TestimonialReview';
 import { FaFileArrowUp } from 'react-icons/fa6';
 
 interface TestimonialForm {
@@ -389,17 +388,6 @@ loading ? (
 </div>
 </div>
 
-
-      {currentIndex !== null && (
-        <TestimonialReview
-        src={gallery[currentIndex]}
-        onClose={closeModal}
-        onPrev={goPrev}
-        onNext={goNext}
-        hasPrev={(currentIndex + 1) > 0}
-        hasNext={currentIndex < (gallery.length - 1)}
-        />
-        )}
 
         <DeletePopup
             isOpen={showPopup}

@@ -3,15 +3,15 @@ import AdminTopHeader from '../../component/AdminTopHeader'
 import SideNavAdmin from '../../component/SideNavAdmin'
 import Hero from './component/Hero'
 import Gallery from './component/Gallery'
-import Team from './component/Testimonial'
+
 import BrandLogo from './component/BrandLogo'
 
 
-const headers = ['hero sliders', 'brand logos', 'gallery'];
+const headers = ['brand logos', 'gallery'];
 
 function Homepage() {
 
-   const [activeTab, setActiveTab] = useState('hero sliders'); 
+   const [activeTab, setActiveTab] = useState('brand logos'); 
     
     
   return (
@@ -41,11 +41,9 @@ function Homepage() {
                     {
                         activeTab == 'gallery' ? (
                               <Gallery />
-                        ) :  activeTab == 'brand logos' ? (
+                        ) :   (
                             <BrandLogo/>
-                        ) : (
-                            <Hero />
-                        )
+                        ) 
                     }
                    
                 </div>

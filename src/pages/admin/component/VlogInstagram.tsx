@@ -6,7 +6,6 @@ import { userAuth } from '../../context/AuthContext';
 import { toast } from 'react-toastify';
 import ButtonPreloader from '../../../component/ButtonPreloader';
 import DeletePopup from './DeletePopUp';
-import TestimonialReview from '../../../component/TestimonialReview';
 import InstagramPreview from '../../../component/InstagramPreview';
 
 

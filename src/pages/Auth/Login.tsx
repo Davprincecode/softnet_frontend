@@ -48,6 +48,7 @@ function Login() {
     try {
       const response = await fetch(`${baseUrl}/auth/login`, requestOptions);   
       setLoading(false); 
+      
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.message);
