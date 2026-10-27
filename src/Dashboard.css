@@ -419,7 +419,21 @@ width: 49% !important;
 .discount-input{
   width: 50% !important;
 }
-
+.cursor-pointer{
+  cursor: pointer;
+}
+.fields-header{
+  margin-bottom: 10px;
+}
+.fields-header button{
+  cursor: pointer;
+}
+.field-card .cancel{
+  margin-bottom: 10px;
+}
+.card button{
+  cursor: pointer;
+}
 .admin-input{
 width: 100%;
 margin: 10px 0px;

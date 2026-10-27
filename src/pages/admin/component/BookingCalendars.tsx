@@ -45,7 +45,7 @@ const BookingCalendars = ({bookTime, SetBookTime, setBookingDescription, setInte
   const [loading, setLoading] = useState(false);
   const [userLoading, setUserLoading] = useState(false);
  
-  const { baseUrl } = userAuth();
+  const { baseUrl, token } = userAuth();
 
   const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
   const firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay(); 
@@ -54,6 +54,7 @@ const BookingCalendars = ({bookTime, SetBookTime, setBookingDescription, setInte
     useEffect(()=>{
     const startDate = currentYear + "-" + (currentMonth + 1) + "-" + "01";
     const endDate = currentYear + "-" + (currentMonth + 1) + "-" + daysInMonth;
+
     handleMonthlyBooking(startDate, endDate);
     }, [currentMonth, currentYear])
 
@@ -73,37 +74,41 @@ const BookingCalendars = ({bookTime, SetBookTime, setBookingDescription, setInte
     }
   };
    
-  const handleMonthlyBooking = async (startDate : string, endDate : string) => {
-    setLoading(true);
-    try {
-      const response = await fetch(`${baseUrl}/bookings/${startDate}/${endDate}`, {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-        redirect: "follow"
-      });   
-      if (!response.ok) {
-        const errorResponse = await response.json();
-        throw new Error(errorResponse.message);
-      }
-        const result = await response.json(); 
-        setBookingDescription(result.data.lenghth > 0 && result.data[0].bookingDescription);
-        setInterval(result.data.lenghth > 0 && result.data[0].interval);
-        setTimeSlots(result.data);
-        SetSelectedBookingTime([]);
-        setSelectedDate(null);
-        setLoading(false);
-    } catch (error) {
-      if (typeof error === "object" && error !== null && "message" in error && typeof error.message === "string") {
-        toast.error(error.message);
-      } else {
-        toast.error("An unknown error occurred.");
-      }
-      setTimeSlots([]);
-      setLoading(false);
-    } finally {
-      setLoading(false);
-    }
+const handleMonthlyBooking = async (startDate : string, endDate : string) => {
+          setLoading(true);
+          const myHeaders = new Headers();
+          myHeaders.append("Content-Type", "application/json");
+          myHeaders.append("Authorization", token);
+          const requestOptions: RequestInit = {
+              method: "GET",
+              headers: myHeaders,
+              redirect: "follow"
+          };
+          try {
+              const response = await fetch(`${baseUrl}/booking/${startDate}/${endDate}`, requestOptions); 
+  
+  if (!response.ok) {
+    const errorResponse = await response.json();
+    throw new Error(errorResponse.message);
   }
+    const result = await response.json(); 
+    setInterval(result.data.lenghth > 0 && result.data[0].interval);
+    setTimeSlots(result.data);
+    SetSelectedBookingTime([]);
+    setSelectedDate(null);
+    setLoading(false);
+} catch (error) {
+  if (typeof error === "object" && error !== null && "message" in error && typeof error.message === "string") {
+    toast.error(error.message);
+  } else {
+    toast.error("An unknown error occurred.");
+  }
+  setTimeSlots([]);
+  setLoading(false);
+} finally {
+  setLoading(false);
+}
+}
   
  const bookConsult = (bookingId: string) => {
   const bookingtime = selectedBookingTime.filter(item => item.bookingId == bookingId)[0]; 

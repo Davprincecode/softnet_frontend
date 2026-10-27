@@ -12,13 +12,24 @@ import AddConsulting from './component/AddConsulting';
 import EditTeam from './component/EditTeam';
 import AllTeam from './component/AllTeam';
 import AddTeam from './component/AddTeam';
+import { userAuth } from '../context/AuthContext';
 // import GoogleDocsEditor from './component/GoogleDocsEditor';
 
 
-const headers = ['team', 'create team'];
-
 function Team() {
-      const [activeTab, setActiveTab] = useState('team'); 
+     
+    const {role, teamList, createTeam}  = userAuth();  
+    const headers = [
+            (role === 'admin' || teamList) && 'team',
+            (role === 'admin' || createTeam) && 'create team',
+        ].filter(Boolean) as string[];
+    const [activeTab, setActiveTab] = useState(
+            headers[0] ?? ''
+        );
+    const toggleToDefault = () => {
+        setActiveTab(headers[0]);
+    }
+
       const [editHero, setEditHero] = useState<boolean>(false);
       const [editId, setEditId] = useState<string>('');
 
@@ -26,9 +37,6 @@ function Team() {
       setEditHero(!editHero);
       }
 
-  const toggleToDefault = () => {
-   setActiveTab('team');
-  }
   return (
      <div className='admin-dashboard'>
         <AdminTopHeader />

@@ -15,7 +15,7 @@ function Login() {
   const [loginEmail, setLoginEmail] = useState<string>('');
   const[loginPassword, setLoginPassword] = useState<string>('');
   const [auth, setAuth] = useState<string>('signin');
-  const {baseUrl, loginAuth, logInUser}  = userAuth(); 
+  const {baseUrl, updateUIState, loginAuth, logInUser}  = userAuth(); 
 
    const { pathname } = useLocation();
   
@@ -47,21 +47,25 @@ function Login() {
     };
     try {
       const response = await fetch(`${baseUrl}/auth/login`, requestOptions);   
-      setLoading(false); 
-      
+      setLoading(false);  
       if (!response.ok) {
         const errorResponse = await response.json();
         throw new Error(errorResponse.message);
       }
       const result = await response.json();
        loginAuth(result.data.userId, result.data.name, result.data.email,  result.data.address1, result.data.address2, result.data.phoneNumber1, result.data.phoneNumber2, result.data.city, result.data.city, result.data.postalCode, result.data.profileImage, result.cart, result.notification, result.data.role,  result.token);
-        if(result.data.role == "admin"){
-            toast.success("Logged in successfully!");
+        toast.success("Logged in successfully!");
             logInUser();
-            navigate("/admin/admin-dashboard"); 
-          }else{
-            toast.error("You are not allow")
-          }
+            navigate("/admin/admin-dashboard");
+            updateUIState(result.data.menu ?? "");
+
+       // if(result.data.role == "admin"){
+        //     toast.success("Logged in successfully!");
+        //     logInUser();
+        //     navigate("/admin/admin-dashboard"); 
+        //   }else{
+        //     toast.error("You are not allow")
+        //   }
         setLoading(false);
     } catch (error) {
                         setLoading(false);

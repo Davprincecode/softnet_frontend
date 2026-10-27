@@ -8,14 +8,22 @@ import BrandLogo from './component/BrandLogo'
 import Email from './component/Email'
 import Econtact from './component/Econtact'
 import OfficeAddress from './component/OfficeAddress'
+import { userAuth } from '../context/AuthContext'
 
-const headers = ['contact', 'email', 'address'];
 
-function ContactPage() {
+function ContactPage() { 
+    const {role, contactUs, menuEmail, address}  = userAuth(); 
 
-   const [activeTab, setActiveTab] = useState('contact'); 
+    const headers = [
+        (role === 'admin' || contactUs) && 'contact',
+        (role === 'admin' || menuEmail) && 'email',
+        (role === 'admin' || address) && 'address'
+    ].filter(Boolean) as string[];
     
-    
+    const [activeTab, setActiveTab] = useState(
+    headers[0] ?? ''
+    );
+
   return (
     <div className='admin-dashboard'>
         <AdminTopHeader />

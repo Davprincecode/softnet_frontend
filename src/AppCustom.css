@@ -5897,11 +5897,9 @@ margin-top: 60px;
     }
     .consultant-bod{
      text-align: left;
-    }
-
-
+    }    
     .consultant-calendar{
-      width: 70%;
+      width: 100%;
     }
 
     .calendar-flex-con{
@@ -5992,7 +5990,7 @@ margin-top: 60px;
          color: white;
        }        
     .calendar-time-container{
-      width: 20%;
+      width: 30%;
     }
     .times-section{
       width: 100%;
@@ -6505,4 +6503,123 @@ justify-content: center;
 }
 /* ================================ master course and master details end ================ */
 
+/* ============================== accessibility start ==================================== */
+.user-details{
+  width: 100%;
+}
+.user-details .form-con{
+  width: 100%;
+}
+.wrapper-containers{
+  margin-top: 20px;
+}
+.wrapper-containers .profile-second{
+ margin-bottom: 10px;
+}
+.wrapper-flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  margin: 10px 0px;
+}
+.wrapper-flex-parent{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-left: 5%;
+  flex-wrap: wrap;
+}
+.wrapper-flex-parent .wrapper-flex{
+ width: 30%;
+}
+.wrapper-flex .container{
+  text-transform: capitalize;
+}
+.wrapper-flex  .container-child{
+ text-transform: capitalize;
+}
+.role-con{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.role-button{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 40px;
+  margin-bottom: 20px;
+}
+.role-button .profileEdit{
+    border-radius: 50px;
+    border: 2px solid black;
+    padding: 10px 40px;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+.role-button .profileDeleteBtn{
+  padding: 10px 40px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+  text-transform: capitalize;
+  border-radius: 50px;
+}
+.role-button .profileActiveBtn{
+  padding: 10px 40px;
+  background-color: #28C76F;
+  color: white;
+  cursor: pointer;
+  text-transform: capitalize;
+  border-radius: 50px;
+}
+/* Radio styling */ 
+.radio {
+  flex: 0 0 10%;
+}
 
+.radio-con { 
+  width: 20px; 
+  height: 20px; 
+  border: 1px solid; 
+  padding: 2px;
+  border-radius: 50%; 
+  cursor: pointer; 
+  transition: background-color 0.3s ease, 
+  border-color 0.3s ease; 
+ } 
+
+ .radio-con.color { 
+  background-color: #D3AF37; 
+  border-color: #D3AF37; 
+  box-shadow: inset 0 0 0 2px white
+} 
+.radio-con.nocolor { 
+  background-color: white;
+  border-color: #D3AF37; 
+}
+.container {
+  flex: 0 0 94%;
+  padding: 1rem;
+  border-radius: 5px;
+  background-color: #FFC60029;
+  color: #777777;
+  transition: background-color 0.3s ease;
+}
+.container-parent-flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color:  #FFC60029;
+  color: #777777;
+  width: 95%;
+  padding-right: 20px;
+  border-radius: 5px;
+}
+.container-parent-flex .container{
+  background-color:  transparent;
+  
+}
+
+/* ============================== accessibility end ==================================== */

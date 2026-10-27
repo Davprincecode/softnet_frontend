@@ -5,12 +5,24 @@ import AllBlog from './component/AllBlog';
 import BlogEditor from './component/BlogEditor';
 import AddBlog from './component/AddBlog';
 import EditBlog from './component/EditBlog';
+import { userAuth } from '../context/AuthContext';
 // import GoogleDocsEditor from './component/GoogleDocsEditor';
 
 
-const headers = ['all blog posts', 'add blog post'];
+
 function AdminConsultant() {
-      const [activeTab, setActiveTab] = useState('all blog posts'); 
+        const {role, blogList, createBlog}  = userAuth();  
+        const headers = [
+            (role === 'admin' || blogList) && 'all blog posts',
+            (role === 'admin' || createBlog) && 'add blog post',
+        ].filter(Boolean) as string[];
+        const [activeTab, setActiveTab] = useState(
+            headers[0] ?? ''
+        );
+        const toggleToDefault = () => {
+        setActiveTab(headers[0]);
+        }
+
       const [editHero, setEditHero] = useState<boolean>(false);
       const [editId, setEditId] = useState<string>('');
 
@@ -18,9 +30,7 @@ function AdminConsultant() {
       setEditHero(!editHero);
       }
 
-  const toggleToDefault = () => {
-   setActiveTab('all blog posts');
-  }
+ 
   return (
      <div className='admin-dashboard'>
         <AdminTopHeader />

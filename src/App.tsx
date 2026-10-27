@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import './AppCustom.css'
 import './Dashboard.css'
+import './AdminFormBuilder.css'
 import 'react-multi-carousel/lib/styles.css';
 import Login from "./pages/Auth/Login";
 import Homepage from "./pages/admin/Homepage";
@@ -21,6 +22,10 @@ import Team from "./pages/admin/Team";
 import Services from "./pages/admin/Services";
 import PassWord from "./pages/admin/PassWord";
 import ContactPage from "./pages/admin/ContactPage";
+import ServicesPrice from "./pages/admin/ServicesPrice";
+import ServiceOrderPage from "./pages/admin/ServiceOrderPage";
+import ServiceOrderList from "./pages/admin/ServiceOrderList";
+import UserSettings from "./pages/admin/UserSettings";
 
 
 
@@ -61,6 +66,16 @@ const scheduleToggle = () => {
       
       <Route path="/admin">
          <Route path="admin-dashboard" element={<AdminDashboard/>} />
+
+          <Route path="admin-consult" element={<AdminConsultant />} />
+
+          <Route path="sub-admin" element={<UserSettings />} />
+
+        
+          <Route path="service-price" element={<ServicesPrice />} />
+
+          <Route path="service-order" element={<ServiceOrderList />} />
+
          <Route path="home-page" element={<Homepage/>} />
          <Route path="vlog-page" element={<Vlog/>} />
          <Route path="admin-services" element={<Services />} />
@@ -68,7 +83,6 @@ const scheduleToggle = () => {
          <Route path="about-us" element={< AboutUs />} />
          <Route path="contact-us" element={< ContactPage />} />
          <Route path="admin-message" element={<MessageComponent />} />
-         <Route path="admin-consult" element={<Consulting />} />
          <Route path="team" element={<Team />} />
          <Route path="change-password" element={<PassWord />} />
        

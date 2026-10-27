@@ -134,8 +134,6 @@ type popType = {
             }
         };
 
-
-
         return ( 
 
           <div>

@@ -11,24 +11,17 @@ import { tr } from 'framer-motion/client';
 import { toast } from 'react-toastify';
 import DeletePopup from './DeletePopUp';
 import ButtonPreloader from '../../../component/ButtonPreloader';
+import { Meta } from '../../../types/types';
 
-interface Meta {
-  current_page: number;
-  per_page: number;
-  total: number;
-  last_page: number;
-  next_page_url: string | null;
-  prev_page_url: string | null;
-}
 
 interface CourseIntern {
-blogImage: string;
-blogText: string;
-blogTitle: string;
-createdAt: string;
-id: string;
-pin: boolean;
-status: string;
+    blogImage: string;
+    blogText: string;
+    blogTitle: string;
+    createdAt: string;
+    id: string;
+    pin: boolean;
+    status: string;
 }
 
 interface HeroInterface {
@@ -37,7 +30,7 @@ interface HeroInterface {
 }
 
 const AllBlog : React.FC<HeroInterface> = ({  heroFunction, setEditId }) => {
-     const [courses, setCourses] = useState<CourseIntern[]>([]);
+    const [courses, setCourses] = useState<CourseIntern[]>([]);
     const [page, setPage] = useState<number>(1);
     const [meta, setMeta] = useState<Meta | null>(null);
     const {baseUrl, token} = userAuth();
@@ -66,7 +59,7 @@ const AllBlog : React.FC<HeroInterface> = ({  heroFunction, setEditId }) => {
                   throw new Error(errorResponse.message);
                   }
                   const result = await response.json();  
-                 setCourses(result.data);
+                  setCourses(result.data);
                   setMeta(result.meta);
                   setLoading(false);
               } catch (error) {

@@ -130,22 +130,22 @@ const handleDrag = (e: React.DragEvent<HTMLDivElement>) => {
 
   const validateProductForm = () => {
   if (!productName.trim()) {
-    toast.error("Product name is required");
-    return false;
+  toast.error("Product name is required");
+  return false;
   }
-  
+
   if (!productImage) {
-    toast.error("Product image is required");
-    return false;
+  toast.error("Product image is required");
+  return false;
   }
   if (!price || isNaN(price)) {
-    toast.error("Valid product price is required");
-    return false;
+  toast.error("Valid product price is required");
+  return false;
   }
-    
+
 
   return true;
-};
+  };
 
  const handleProduct =  async() => {
     if(!validateProductForm()){

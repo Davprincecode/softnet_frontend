@@ -9,68 +9,80 @@ import AllAboutUs from './component/AllAboutUs';
 import EditServices from './component/EditServices';
 import AllServices from './component/AllServices';
 import AddServices from './component/AddServices';
+import { userAuth } from '../context/AuthContext';
 // import GoogleDocsEditor from './component/GoogleDocsEditor';
 
 
 const headers = ['services', 'create services'];
 
- const Services = () => {
-      const [activeTab, setActiveTab] = useState('services'); 
-      const [editHero, setEditHero] = useState<boolean>(false);
-      const [editId, setEditId] = useState<string>('');
+const Services = () => {
+    const {role, servicesList, createServices}  = userAuth(); 
+        
+    const headers = [
+        (role === 'admin' || servicesList) && 'services',
+        (role === 'admin' || createServices) && 'create services',
+    ].filter(Boolean) as string[];
 
-      const heroFunction = () => {
-      setEditHero(!editHero);
-      }
+    const [activeTab, setActiveTab] = useState(
+        headers[0] ?? ''
+    );
+    const toggleToDefault = () => {
+         setActiveTab(headers[0]);
+    }
 
-  const toggleToDefault = () => {
-   setActiveTab('services');
-  }
-  return (
-     <div className='admin-dashboard'>
-        <AdminTopHeader />
+    const [editHero, setEditHero] = useState<boolean>(false);
+    const [editId, setEditId] = useState<string>('');
 
-         <div className="flex mainWrapper">
-           <SideNavAdmin/> 
+    const heroFunction = () => {
+    setEditHero(!editHero);
+    }
 
-           <div className="mainBody">
-               <div className="mainHeader flex-center justification-center">
-                    <div className="mainHeaderRouteCon flex-center justification-between">
-                        {headers.map((label) => (
-                            <div
-                            key={label}
-                            className={`mainHeaderRoute ${activeTab === label ? 'mainHeaderActive' : ''}`}
-                            onClick={() => setActiveTab(label)}
-                            >
-                            {label}
-                            </div>
-                        ))}
-                    </div>
+   
+    return (
+    <div className='admin-dashboard'>
+    <AdminTopHeader />
+
+        <div className="flex mainWrapper">
+        <SideNavAdmin/> 
+
+        <div className="mainBody">
+            <div className="mainHeader flex-center justification-center">
+                <div className="mainHeaderRouteCon flex-center justification-between">
+                    {headers.map((label) => (
+                        <div
+                        key={label}
+                        className={`mainHeaderRoute ${activeTab === label ? 'mainHeaderActive' : ''}`}
+                        onClick={() => setActiveTab(label)}
+                        >
+                        {label}
+                        </div>
+                    ))}
                 </div>
+            </div>
 
-                  <div className="mainBodyDetails">
-                    {
-                        activeTab == 'services' ? (
-                             editHero ? (
-                                    <EditServices heroFunction={heroFunction} editId={editId} setEditId={setEditId}/>
-                                ) : (
-                                  <AllServices  heroFunction={heroFunction} setEditId={setEditId}/>
-                              )
+                <div className="mainBodyDetails">
+                {
+                    activeTab == 'services' ? (
+                            editHero ? (
+                                <EditServices heroFunction={heroFunction} editId={editId} setEditId={setEditId}/>
+                            ) : (
+                                <AllServices  heroFunction={heroFunction} setEditId={setEditId}/>
+                            )
 
-                        ) : (
-                          <AddServices  toggleToDefault={toggleToDefault}/>
-                        )
-                    }
-                   
-                </div>
+                    ) : (
+                        <AddServices  toggleToDefault={toggleToDefault}/>
+                    )
+                }
+                
+            </div>
 
 
-           </div>
-           </div>
-           
-           </div>
-    
-  )
+        </div>
+        </div>
+        
+        </div>
+
+    )
 }
 
 export default Services

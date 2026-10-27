@@ -59,6 +59,7 @@ function MySchedule({relBookingId, setRelBookingId, scheduleToggle, currentMonth
       setShowPopup(false)
        location.reload();
      }
+
   const handleDeleteClick = (id: string) => {
     setSelectedId(id);
     setShowPopup(true);
@@ -110,20 +111,6 @@ function MySchedule({relBookingId, setRelBookingId, scheduleToggle, currentMonth
               <ConsultantDetails bookTime={bookTime} scheduleFunction={scheduleFunction}/>
           ) : (
           <div className="consultant">
-
-              <div className="consultant-detail">
-                  <div className="consultant-icon"><FaCalendarAlt /></div>
-
-                  <p className='schedule-name'>Scheduled</p>
-
-                  <h2 className='consultant-name'>Consultations</h2>
-
-                  <div className="clock flex-center"><CiClock1 /> <h2>{interval}</h2></div>
-                  
-                  <div className="consultant-bod">
-                        {bookingDescription}
-                    </div>
-              </div>
 
                 <div className="consultant-calendar">
                  

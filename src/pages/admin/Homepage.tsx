@@ -5,14 +5,21 @@ import Hero from './component/Hero'
 import Gallery from './component/Gallery'
 
 import BrandLogo from './component/BrandLogo'
+import { userAuth } from '../context/AuthContext'
 
 
-const headers = ['brand logos', 'gallery'];
 
 function Homepage() {
 
-   const [activeTab, setActiveTab] = useState('brand logos'); 
-    
+    const {role, brandLogo}  = userAuth(); 
+
+    const headers = [
+            (role === 'admin' || brandLogo) && 'brand logos',
+    ].filter(Boolean) as string[];
+        
+    const [activeTab, setActiveTab] = useState(
+        headers[0] ?? ''
+    );
     
   return (
     <div className='admin-dashboard'>
@@ -25,9 +32,9 @@ function Homepage() {
 
                 <div className="mainHeader flex-center justification-center">
                     <div className="mainHeaderRouteCon flex-center justification-between">
-                        {headers.map((label) => (
+                        {headers.map((label, index) => (
                             <div
-                            key={label}
+                            key={index}
                             className={`mainHeaderRoute ${activeTab === label ? 'mainHeaderActive' : ''}`}
                             onClick={() => setActiveTab(label)}
                             >
@@ -49,11 +56,7 @@ function Homepage() {
                 </div>
 
            </div>
-
-
          </div>
-        
-
     </div>
   )
 }
